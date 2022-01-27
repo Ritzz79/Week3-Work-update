@@ -55,7 +55,7 @@ void completionTime(int num, int mat[][5])
 
 int main()
 {
-	int num, temp;
+	int num;
 
 	cin >> num; //number of process 
     
