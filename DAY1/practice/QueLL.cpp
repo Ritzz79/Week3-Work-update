@@ -33,9 +33,9 @@ class QueueLinkList
 		node* temp = new node();
 		if(size == 0)
 		{
-			this->head->data = d;
-			this->head->data = this->tail->data;
-			this->head->next = NULL;
+			head->data = d;
+			head->data = tail->data;
+			head->next = NULL;
 
 		}
 
@@ -43,8 +43,8 @@ class QueueLinkList
 		{
 			temp = new node();
 			temp->data = d;
-			this->tail->next = temp;
-			this->tail = temp;
+			tail->next = temp;
+		    tail = temp;
 			temp->next = NULL;
 
 		}
@@ -55,17 +55,15 @@ class QueueLinkList
 	//removes element from the queue
 	int Dqueue() 
 	{
-		int temp = this->head->data;
-		this->head = this->head->next;
-		node* temp1 = this->head;
+		int temp = head->data;
+		head = head->next;
+		node* temp1 = head;
 		size--;
 		return temp;
-	    
-
 	}
 	
 	//returns the current length of the queue
-    	int Length()
+    int Length()
 	{
 		return size;
 	}
@@ -73,21 +71,21 @@ class QueueLinkList
 	//returns the current head element
 	int FirstElement() 
 	{
-		return this->head->data;
+		return head->data;
 	    
 	}
 	
 	//clears the entire queue
 	void clearQueue()
 	{
-		this->tail=this->head = new node();
+		tail = head = new node();
 		size=0;
 	}
 	
 	//display all the elements of of the queue
 	void Display()
 	{
-		node* temp = this->head;
+		node* temp = head;
 		while(temp != NULL)
 		{    
 		    cout<<temp->data<<" ";
@@ -133,9 +131,9 @@ int main()
 			case 2:
 			{
 			    if(Q->Length() <= 0)
-				cout<<"queue is empty...!!!"<<endl;
+					cout<<"queue is empty...!!!"<<endl;
 			    else
-				cout<<"first element is : "<<Q->FirstElement()<<endl;
+					cout<<"first element is : "<<Q->FirstElement()<<endl;
 			    break;
 
 			}
@@ -150,9 +148,9 @@ int main()
 			case 4:
 			{
 			    if(Q->Length() <= 0)
-				cout<<"queue is empty...!!!"<<endl;
+					cout<<"queue is empty...!!!"<<endl;
 			    else
-				cout<<"removed element is : "<<Q->Dqueue()<<endl;
+					cout<<"removed element is : "<<Q->Dqueue()<<endl;
 			    break;
 			}
 			case 5:
