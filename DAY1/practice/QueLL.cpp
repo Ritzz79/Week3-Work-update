@@ -41,10 +41,9 @@ class QueueLinkList
 
 		else
 		{
-			temp = new node();
 			temp->data = d;
 			tail->next = temp;
-		    tail = temp;
+		    	tail = temp;
 			temp->next = NULL;
 
 		}
@@ -63,7 +62,7 @@ class QueueLinkList
 	}
 	
 	//returns the current length of the queue
-    int Length()
+    	int Length()
 	{
 		return size;
 	}
@@ -113,7 +112,7 @@ int main()
 	PrintInstruction();
 	
 	//infinite loop untill the user enters '0'.
-	while(n != 0)    
+	while(1)    
 	{
 		cout<<endl;
 		cout<<"ENTER ANY NO. BETWEEN 0 TO 6: ";
