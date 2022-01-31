@@ -1,166 +1,173 @@
 #include<iostream>
 using namespace std;
-    
+   
+//node class for creating node for linked list
 class node
 {
     public:
     int data;
-    node* next=NULL;
+    node* next = NULL;
     
 };
 
+//class for creating linked list
 class QueueLinkList
 {
 	node* head;
-    node* tail;
+	node* tail;
     
-    //size of the link list 
-    int size;  
-    public:
+	//size of the link list 
+	int size;  
+	public:
 
-    
-        //constructors and destructors
-        //constructors and destructors
+    	//constructor
         QueueLinkList() 
         {
-            //QueueArray = new E[size];
             size=0;
-            this->head=this->tail=new node();
+            this->head = this->tail=new node();
         }
-      
-		void insert(int d) 
+      	
+	//function to insert an element in the queue
+	void Enqueue(int d) 
+	{
+		node* temp = new node();
+		if(size == 0)
 		{
-			node* temp= new node();
-			if(size==0)
-			{
-				this->head->data = d;
-			  	this->head->data = this->tail->data;
-				this->head->next=NULL;
-				
-			}
-		
-				else
-				{
-					temp=new node();
-					temp->data=d;
-					this->tail->next=temp;
-					this->tail=temp;
-					temp->next=NULL;
-										
-	        	}
-			
-                size++;
+			this->head->data = d;
+			this->head->data = this->tail->data;
+			this->head->next = NULL;
+
 		}
-		  
-		int remov() 
+
+		else
 		{
-		    if(size==0)
-		    {
-		        cout<<"queue is empty...!!!"<<endl;
-		    }
-		    else
-		    {
-			    int temp=this->head->data;
-		    	this->head=this->head->next;
-		    	node* temp1=this->head;
-		    	while(temp1!=this->tail->next)
-		    	{
-			       cout<<temp1->data<<" ";
-			      temp1=temp1->next;
-		    	}
-		    	cout<<endl;
-		    	size--;
-		    	return temp;
-		    }
-			
+			temp = new node();
+			temp->data = d;
+			this->tail->next = temp;
+			this->tail = temp;
+			temp->next = NULL;
+
 		}
-		 
-		int length() 
-		{
-			return size;
+
+		size++;
+	}
+	
+	//removes element from the queue
+	int Dqueue() 
+	{
+		int temp = this->head->data;
+		this->head = this->head->next;
+		node* temp1 = this->head;
+		size--;
+		return temp;
+	    
+
+	}
+	
+	//returns the current length of the queue
+    	int Length()
+	{
+		return size;
+	}
+	
+	//returns the current head element
+	int FirstElement() 
+	{
+		return this->head->data;
+	    
+	}
+	
+	//clears the entire queue
+	void clearQueue()
+	{
+		this->tail=this->head = new node();
+		size=0;
+	}
+	
+	//display all the elements of of the queue
+	void Display()
+	{
+		node* temp = this->head;
+		while(temp != NULL)
+		{    
+		    cout<<temp->data<<" ";
+		    temp = temp->next;
 		}
-		 
-		int FirstElement() 
-		{
-		    if(size==0)
-		    {
-		        cout<<"queue is empty...!!!"<<endl;
-		    }
-		    else
-		    {
-			    return this->head->data;
-		    }
-		}
-		 
-		void clearQueue()
-		{
-			this->tail=this->head=new node();
-			size=0;
-		}
-		
-		void display()
-		{
-			node* temp=this->head;
-         	while(temp!=NULL)
-           	{    
-         	    cout<<temp->data<<" ";
-          	    temp=temp->next;
-          	}
-            cout<<endl;
-            cout<<"size of list = "<<size<<endl;
-    	}
+		cout<<endl;
+		cout<<"size of queue = "<<size<<endl;
+	}
+	
 };
 
+void PrintInstruction(){
+	    //possible operations
+    	cout<<"0: to terminate the programme"<<endl<<"1: to know the length of queue"<<endl<<"2: to know the value of first location"<<endl<<
+    	"3: to insert the element in queue"<<endl<<"4: to remove the element from queue"<<endl<<"5: to clear the queue"<<
+    	endl<<"6: to display the values of queue"<<endl<<"7: to print the instruction"<<endl;
+}
 
 int main()
 {
 
-	QueueLinkList* A = new QueueLinkList();
-    int n=-1;
-    
-    cout<<"0: to terminate the programme"<<endl<<"1: to know the length of queue"<<endl<<"2: to know the value of first location"<<endl<<
-    "3: to insert the element in queue"<<endl<<"4: to remove the element from queue"<<endl<<"5: to clear the queue"<<
-    endl<<"6: to display the values of queue"<<endl;
-    while(n!=0)    
-    {
-        cout<<endl;
-        cout<<"ENTER ANY NO. BETWEEN 0 TO 6: ";
-        cin>>n;
-        switch(n)
-        {
-            case 1:
-            {
-            	
-                cout<<"length is : "<<A->length()<<endl;
-                break;
-            }   
-            case 2:
-            {
-            	cout<<"first element is : "<<A->FirstElement()<<endl;
-              	break;
-            }
-            case 3:
-            {
-            	int d;
-            	cout<<"Enter the element to insert in queue: "<<endl;
-            	cin>>d;
-            	A->insert(d);
-            	A->display();
-            	break;
-            }
-            case 4:
-            {
-				cout<<"removed element is : "<<A->remov()<<endl;
+	QueueLinkList* Q = new QueueLinkList();	//creating object of class QueueLinkList
+	int n = -1;
+	
+	PrintInstruction();
+	
+	//infinite loop untill the user enters '0'.
+	while(n != 0)    
+	{
+		cout<<endl;
+		cout<<"ENTER ANY NO. BETWEEN 0 TO 6: ";
+		cin>>n;
+		switch(n)
+		{
+			case 0:
+				exit(0);
+		    
+			case 1:
+			{
+				cout<<"length is : "<<Q->Length()<<endl;
 				break;
+			}   
+			case 2:
+			{
+			    if(Q->Length() <= 0)
+				cout<<"queue is empty...!!!"<<endl;
+			    else
+				cout<<"first element is : "<<Q->FirstElement()<<endl;
+			    break;
+
+			}
+			case 3:
+			{
+				int d;
+				cout<<"Enter the element to insert in the queue: ";
+				cin>>d;
+				Q->Enqueue(d);
+				break;
+			}
+			case 4:
+			{
+			    if(Q->Length() <= 0)
+				cout<<"queue is empty...!!!"<<endl;
+			    else
+				cout<<"removed element is : "<<Q->Dqueue()<<endl;
+			    break;
 			}
 			case 5:
 			{
-				A->clearQueue();
+				Q->clearQueue();
 				break;
 			}
 			case 6:
 			{
-				A->display();
+				Q->Display();
+				break;
+			}
+			case 7:
+			{
+				PrintInstruction();
 				break;
 			}
 			default:
@@ -168,8 +175,8 @@ int main()
 				cout<<"method doesn't exists..!!!"<<endl;
 				break;
 			}
-			
-        }
-    }
+
+		}
+	}
 	return 0;
 }
